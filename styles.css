@@ -1,0 +1,716 @@
+/* General Styling */
+:root {
+    --bg-light: #f0f8ff;  /* Light mode background */
+    --bg-dark: #0a192f;  /* Dark mode background */
+    --text-light: #333;   /* Light mode text */
+    --text-dark: #fff;    /* Dark mode text */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+/* Dark mode for header */
+.header.dark-mode {
+    background-color: #004080;  /* Darker shade of blue */
+}
+
+/* Dark mode button styling */
+.dark-mode-toggle {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.header .logo {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.header .tagline {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Upload Section */
+.upload-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.drag-drop-area {
+    max-width: 900px;
+    margin: 20px auto;
+    border: 2px dashed #007bff;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    background: #eaf4ff;
+    cursor: pointer;
+    position: relative;
+}
+
+.drag-drop-area p {
+    font-size: 1rem;
+    color: #007bff;
+    margin: 10px 0;
+}
+
+.custom-upload {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.custom-upload input[type="file"] {
+    display: none;
+}
+
+.upload-status {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* Features Section */
+.features-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.features-section button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.features-section button:hover {
+    background-color: #0056b3;
+}
+
+/* Output Section */
+.output-section {
+    color: black;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.output-section textarea {
+    width: 100%;
+    height: 150px;
+    padding: 0px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: none;
+}
+
+/* Footer */
+.footer {
+    background-color: #f8f9fa;
+    color: black;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+.footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* ✅ Added Snippet Starts */
+.save-load-container {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 400px;
+    background-color: #f9f9f9;
+    margin: 20px auto; /* Center aligned */
+}
+
+/* Styling for buttons inside save-load-container */
+.save-load-container button {
+    margin: 5px;
+    padding: 8px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.save-load-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Styling for select and input inside save-load-container */
+.save-load-container select, 
+.save-load-container input {
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+/* ✅ Added Snippet Ends */
+
+/* Style the search bar */
+#searchInput {
+    width: 300px;
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+#searchButton {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+#searchButton:hover {
+    background-color: #0056b3;
+}
+
+/* Style the search popup */
+#searchPopup {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;
+}
+
+#searchPopup h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+#searchResults {
+    max-height: 300px;
+    overflow-y: auto;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
+
+#searchResults p {
+    padding: 5px;
+    background: #e3f2fd;
+    border-left: 4px solid #007bff;
+    margin-bottom: 5px;
+}
+
+#closeSearchPopup {
+    margin-top: 15px;
+    padding: 8px 12px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#closeSearchPopup:hover {
+    background-color: #a71d2a;
+}
+
+/* Highlighted search text */
+mark {
+    background-color: yellow;
+    font-weight: bold;
+}
+#caseSensitiveToggle {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Toggle Button (Case Sensitivity) */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Toggle Label */
+.toggle-label {
+    font-size: 14px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+.save-load-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px gray;
+    z-index: 1000;
+}
+
+.popup ul {
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.popup ul li {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.popup ul li:hover {
+    background: #ddd;
+}
+/* Popup Styling */
+.popup {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px gray;
+    z-index: 1000;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.popup ul {
+    list-style: none;
+    padding: 0;
+}
+
+.popup ul li {
+    padding: 5px;
+    cursor: pointer;
+    background: #f0f0f0;
+    margin: 5px 0;
+}
+
+.popup ul li:hover {
+    background: #ddd;
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px gray;
+    text-align: center;
+}
+
+.load-item {
+    display: block;
+    padding: 10px;
+    margin: 5px;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.load-item:hover {
+    background: #ddd;
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 25%;
+    left: 35%;
+    width: 30%;
+    background: white;
+    color: black;
+    padding: 20px;
+    box-shadow: 0 0 10px gray;
+    text-align: center;
+}
+
+.popup input {
+    width: 90%;
+    padding: 5px;
+    margin: 10px 0;
+}
+#clearBtn, #downloadBtn {
+    padding: 8px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+}
+
+#clearBtn:hover, #downloadBtn:hover {
+    background-color: #0056b3;
+}
+
+#savedFilesList {
+    list-style: none;
+    padding: 0;
+}
+
+#savedFilesList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+.file-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.file-actions .icon {
+    cursor: pointer;
+    color: gray;
+}
+
+.file-actions .icon:hover {
+    color: black;
+}
+/* Styling for output section buttons */
+.output-section button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.output-section button:hover {
+    background-color: #0056b3;
+}
+
+/* Styling for auto-save checkbox */
+.autosave-option {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.autosave-option input {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.file-name {
+    flex-grow: 1;
+    text-align: left;
+    padding-right: 10px;
+}
+
+.icon-container {
+    display: flex;
+    gap: 10px;
+}
+
+.icon-btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    padding: 5px;
+}
+
+.icon-btn:hover {
+    color: red;
+}
+
+#autosave-checkbox {
+    display: flex;
+    justify-content: center;  
+}
+
+/* dynamic question module */
+
+/* Popup Container */
+#dqa-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #333;
+    display: none;
+    width: 450px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+}
+
+/* Close Button */
+#dqa-close-popup {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+    color: #444;
+    font-weight: bold;
+}
+
+/* Popup Inner Container */
+#dqa-popup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Setup Section */
+#dqa-setup {
+    text-align: center;
+    width: 100%;
+}
+
+#dqa-setup h2 {
+    margin-bottom: 15px;
+}
+
+#dqa-setup label {
+    display: block;
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+#dqa-setup input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+#dqa-setup input[type="number"] {
+    margin-left: 5px;
+    padding: 5px;
+    font-size: 14px;
+    width: 80px;
+}
+
+/* Start Exam Button */
+#dqa-start-exam {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s ease-in-out;
+}
+
+#dqa-start-exam:hover {
+    background: #218838;
+}
+
+/* Exam Section */
+#dqa-exam-section {
+    display: none;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-top: 15px;
+    border-radius: 5px;
+    position: relative;
+}
+
+#dqa-timer-display {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #dc3545;
+    background: #f8d7da;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+#dqa-exam-questions {
+    text-align: left;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Submit Exam Button */
+#dqa-submit-exam {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s ease-in-out;
+}
+
+#dqa-submit-exam:hover {
+    background: #0056b3;
+}
+
+/* Feedback Section */
+#dqa-feedback-section {
+    display: none;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+#dqa-feedback-content {
+    text-align: left;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+/* Download Feedback Button */
+#dqa-download-feedback {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: #17a2b8;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s ease-in-out;
+}
+
+#dqa-download-feedback:hover {
+    background: #138496;
+}

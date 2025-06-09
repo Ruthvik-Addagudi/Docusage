@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuSage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">DocUsage</div>
+            <div class="tagline">Learn, understand, and master your documents.</div>
+            <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
+        </header>
+
+        <div class="upload-section">
+            <h2>Upload Your File</h2>
+            <div class="drag-drop-area" id="drag-drop-area">
+                <p>Drag and drop your file here or</p>
+                <label class="custom-upload">
+                    <input type="file" id="file-upload" accept=".pdf,.txt,.docx">
+                    Choose File
+                </label>
+                <p id="upload-status" class="upload-status"></p>
+            </div>
+        </div>
+
+        <div class="features-section">
+            <h2>Choose a Feature</h2>
+            <div class="feature-buttons">
+                <button id="summarize-btn">Summarize</button>
+                <button id="mindmap-btn">Generate Mind Map</button>
+                <button id="true-false-btn">True/False Questions</button>
+                <button id="mcq-btn">MCQ Questions</button>
+                <button id="fill-blank-btn">Fill in the Blanks</button>
+            </div>
+
+            <!-- Search Button (Main UI) -->
+            <button id="searchButtonMain">Search</button>
+
+            <!-- Search Popup -->
+            <div id="searchPopup"
+                style="display:none; position: fixed; top: 20%; left: 30%; width: 40%; background: white; padding: 20px; box-shadow: 0 0 10px gray; border-radius: 8px;">
+
+                <h3>Search</h3>
+
+                <!-- Search Bar Inside Popup -->
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="text" id="searchInput" placeholder="Enter keyword..." style="flex: 1; padding: 5px;">
+                    <button id="searchButton">Search</button>
+                </div>
+
+                <!-- Search Results -->
+                <div id="searchResults" style="margin-top: 10px; max-height: 200px; overflow-y: auto;"></div>
+
+                <!-- Case Sensitivity Toggle -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <label class="switch">
+                            <input type="checkbox" id="caseSensitiveToggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="toggle-label">Case Sensitive</span>
+                    </div>
+
+                    <!-- Close Button -->
+                    <button id="closeSearchPopup">Close</button>
+                </div>
+            </div>
+
+            <button id="saveButton">Save Analysis</button>
+            <button id="loadButton">Load Analysis</button>
+
+            <!-- Save Popup -->
+            <div id="savePopup" class="popup">
+                <h3>Save Analysis</h3>
+                <label for="fileNameInput">File Name:</label>
+                <input type="text" id="fileNameInput" placeholder="Enter file name...">
+                <button id="confirmSave">Save</button>
+                <button id="cancelSave">Cancel</button>
+            </div>
+
+            <!-- Load Popup -->
+            <div id="loadPopup" class="popup">
+                <h3>Load Saved Analysis</h3>
+                <ul id="fileList" class="file-list"></ul> <!-- Updated file list UI -->
+                <button id="closeLoadPopup">Close</button>
+            </div>
+
+            <!-- Ensure This Is Present for Filename Reference -->
+            <p id="uploadedFileName" style="display: none;"></p> <!-- This will store uploaded file name -->
+
+            <!-- Add this inside the body where search button is located -->
+
+            <!-- Dynamic Quiz Button -->
+            <button id="dqa-btn">Dynamic Quiz</button>
+
+            <!-- DQA Popup -->
+            <div id="dqa-popup" style="display: none;">
+                <span id="dqa-close-popup" style="cursor: pointer;">&times;</span>
+
+                <div id="dqa-popup-container">
+                    <!-- Step 1: Quiz Setup -->
+                    <div id="dqa-setup">
+                        <h2>Select Quiz Options</h2>
+                        <label><input type="checkbox" id="dqa-mcq"> Multiple Choice</label><br>
+                        <label><input type="checkbox" id="dqa-true-false"> True/False</label><br>
+                        <label><input type="checkbox" id="dqa-fill-blank"> Fill in the Blanks</label><br><br>
+
+                        <label>Number of Questions:
+                            <input type="number" id="dqa-num-questions" min="1" max="20" required>
+                        </label><br>
+
+                        <label>Timer (minutes):
+                            <input type="number" id="dqa-timer" min="1" max="60" required>
+                        </label><br><br>
+
+                        <button id="dqa-start-exam">Start Exam</button>
+                    </div>
+
+                    <!-- Step 2: Exam Section -->
+                    <div id="dqa-exam-section" style="display: none;">
+                        <div id="dqa-timer-display">Time Left: <span id="dqa-timer-count">00:00</span></div>
+                        <h2>Exam</h2>
+                        <div id="dqa-exam-questions"></div>
+                        <button id="dqa-submit-exam">Submit Exam</button>
+                    </div>
+
+                    <!-- Step 3: Feedback Section -->
+                    <div id="dqa-feedback-section" style="display: none;">
+                        <h2>Exam Results</h2>
+                        <div id="dqa-feedback-content"></div>
+                        <button id="dqa-download-feedback">Download Feedback</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="output-section">
+            <h2>Output</h2>
+            <textarea id="output"></textarea>
+            <div id="analysisOutput"></div>
+            <button id="clearOutput">Clear Output</button>
+            <button id="downloadOutput">Download Output</button>
+            <!-- Auto-Save Checkbox -->
+            <div id="autosave-checkbox" class="autosave-option">
+                <label>
+                    <input type="checkbox" id="autoSaveToggle" checked> Enable Auto-Save
+                </label>
+            </div>
+
+            <!-- New Load Most Recent Analysis Button -->
+            <button id="loadRecentAnalysis">Load Most Recent Analysis</button>
+        </div>
+
+        <footer class="footer">
+            <p>© 2025 DocuSage. All Rights Reserved.</p>
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
